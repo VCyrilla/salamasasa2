@@ -9,3 +9,6 @@ $routes->get('/', 'Home::index');
 $routes->get('/auth', 'Auth::index');
 $routes->get('/auth/register', 'Auth::register');
 $routes->post('/auth/save', 'Auth::save');
+$routes->get('/register', 'Auth::register');
+$routes->get('/register', 'Auth::register');
+

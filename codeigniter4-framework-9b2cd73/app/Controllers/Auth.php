@@ -61,8 +61,27 @@ class Auth extends Controller
         if(!$validation){
             return view ('auth/register', ['validation'=> $this->validator]);
         }else{
-            echo 'Form validated sucessfully';
-        }
+            $name= $this->request->getPost('name');
+            $email= $this->request->getPost('email');
+            $password= $this->request->getPost('password');
+
+            $values = [
+                'name'=> $name,
+                'email'=>$email,
+                'password'=>$password,
+            ];
+
+            $PatientsModel = new \App\Models\PatientsModel();
+            $query = $PatientsModel->insert($values);
+            if(!$query){
+                return redirect()->back()->with('fail', 'Something went wrong');
+                //return redirect()->to('register')->with('fail', 'Something went wrong')
+            }else{
+                  return redirect()->to('register')->with('success', 'You are now registered successfully');
+
+        
+            }
         }
     }
+}
 

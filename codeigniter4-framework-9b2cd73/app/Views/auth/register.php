@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <form action="<?= base_url('auth/save'); ?>" method="post">
-    <?= csrf_field(); ?>
-
-    <link href="<?= base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet">
+     <link href="<?= base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet">
 </head>
 <body>
 
@@ -15,7 +12,16 @@
     <div class="row" style="margin-top:45px">
         <div class= "col-md-4 col-md-offset-4">
             <h4>Register</h4> <hr>
-            <form action="">
+
+            <form action="<?= base_url('auth/save'); ?>" method="post">
+            <?= csrf_field(); ?>
+            <?php if(!empty (session()->getFlashdata('fail'))) : ?>
+                <div class="alert alert-danger"><?= session()->getFlashdata('fail'); ?></div>
+                <?php endif ?>
+
+                <?php if(!empty (session()->getFlashdata('success'))) : ?>
+                <div class="alert alert-success"><?= session()->getFlashdata('success'); ?></div>
+                <?php endif ?>        
                 <div class="form-group">
                     <label for="">Name</label>
                     <input type="text" class="form-control" name="name" placeholder="Enter full name" value="<?= set_value ('name'); ?>">
@@ -47,7 +53,7 @@
             <br>
             <a href="<?= site_url('auth'); ?>"> Have an account? Log in</a>
 
-        </div>
+        </>
 </div>
 </div>
 </form>
