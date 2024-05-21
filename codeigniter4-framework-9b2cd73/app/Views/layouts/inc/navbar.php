@@ -18,7 +18,7 @@
             Log in
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Patient</a></li>
+            <li><a class="dropdown-item" href="<?= site_url('auth') ?>">Patient</a></li>
             <li><a class="dropdown-item" href="#">Doctor</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Admin</a></li>
