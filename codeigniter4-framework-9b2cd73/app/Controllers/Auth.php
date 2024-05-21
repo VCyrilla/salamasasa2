@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use CodeIgniter\Controller;
+use App\Libraries\Hash;
 class Auth extends Controller
 {
     public function __construct(){
@@ -68,7 +69,7 @@ class Auth extends Controller
             $values = [
                 'name'=> $name,
                 'email'=>$email,
-                'password'=>$password,
+                'password'=>Hash::make($password),
             ];
 
             $PatientsModel = new \App\Models\PatientsModel();
