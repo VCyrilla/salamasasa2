@@ -84,5 +84,47 @@ class Auth extends Controller
             }
         }
     }
-}
+        function check(){
 
+            $validation = $this->validate([
+                'email'=>[
+                    'rules'=>'required|valid_email|is_not_unique[patients.email]',
+                    'errors'=>[
+                        'required'=>'Email is required',
+                        'valid_email'=>'Enter a valid email address',
+                        'is_not_unique'=>'This email is not registered'
+                    ]
+                    ],
+                    'password'=>[
+                    'rules'=>'required|min_length[8]|max_length[12]',
+                    'errors'=>[
+                        'required'=>'Password is required',
+                        'min_length'=>'Password must have at least 8 characters',
+                        'max_length'=>'Password must not exceed 12 characters'
+                    ]
+                    ]
+                ]
+                    );
+
+            if(!$validation){
+                return view ('auth/login',['validation'=>$this->validator]);
+            }else{
+                echo 'Form successfully validated';
+            }
+        }
+              //  $email = $this->request->getPost('email');
+              //$password = $this->request->getPost('password');
+              //  $PatientsModel = new \App\Models\PatientsModel();
+              //  $user_info = $PatientsModel-> where('email', $email)->first();
+               // $check_password = Hash :: check($password, $user_info['password']);
+
+               // if(!$check_password) {
+                 //   session()->setFlashdata('fail', 'Incorrect password');
+                   // return redirect()->to('/auth')->withInput();
+               // }
+            }
+            
+        
+        
+        
+    
